@@ -1,6 +1,9 @@
 # GenAI_LLM
 Contains Generative AI and LLM Related Projects
 
+#Visual Studio Code tool is used for python code implementation.
+#Visual Studio Code is a streamlined code editor with support for development operations like debugging, task running, and version control
+
 #Create a Virtual Environment
 python -m venv ragenv
 
