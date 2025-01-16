@@ -13,7 +13,7 @@ ragenv/Scripts/active
 #Create requirements.txt
 
 #Execute the requirements.txt to install the required libraries
-Pip install -r requirements.txt
+pip install -r requirements.txt
 
 #Execute your command cells
 
