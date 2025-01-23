@@ -1,0 +1,1 @@
+This folder contains code about implementing simple rag using langchain
