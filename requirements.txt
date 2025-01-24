@@ -21,3 +21,4 @@ langchainhub
 sentence_transformers
 PyPDF2
 langchain-objectbox
+langchain_google_genai
