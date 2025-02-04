@@ -15,8 +15,5 @@ wordcloud
 faiss-cpu
 grpcio
 langchain-community
-
-# below also is required.uncomment as it is required.
-
-#python -m spacy download en_core_web_sm
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.1.0/en_core_web_sm-2.1.0.tar.gz#egg=en_core_web_sm
 pdfkit
