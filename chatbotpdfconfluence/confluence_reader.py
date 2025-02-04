@@ -3,6 +3,7 @@ import traceback
 import requests
 from requests.auth import HTTPBasicAuth
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
 
 def extract_confluence_details(confluence_url):
     try:
