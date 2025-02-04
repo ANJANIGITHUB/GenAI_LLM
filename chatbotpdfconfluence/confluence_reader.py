@@ -5,6 +5,7 @@ from requests.auth import HTTPBasicAuth
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 import streamlit as st
+import os
 
 def extract_confluence_details(confluence_url):
     try:
