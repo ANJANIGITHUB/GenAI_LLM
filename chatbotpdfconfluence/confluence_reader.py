@@ -80,10 +80,10 @@ def get_confluence_content(confluence_url):
     except Exception as e:
         return f"Error: {e}", None
 
-confluence_link = st.sidebar.text_input("Give your confluence link here:")
+#confluence_link = st.sidebar.text_input("Give your confluence link here:")
 if __name__ == "__main__":
     load_dotenv()
-    get_confluence_content(confluence_link)
+    get_confluence_content(confluence_url)
 
 
 
