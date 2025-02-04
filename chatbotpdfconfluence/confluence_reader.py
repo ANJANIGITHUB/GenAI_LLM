@@ -81,7 +81,7 @@ def get_confluence_content(confluence_url):
 
 if __name__ == "__main__":
     load_dotenv()
-    get_confluence_content()
+    get_confluence_content(confluence_url)
 
 
 
