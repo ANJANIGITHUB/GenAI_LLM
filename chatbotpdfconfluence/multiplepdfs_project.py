@@ -142,7 +142,7 @@ def main():
     
     genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-    logo = Image.open("ai_assistance.png")  # Replace with your logo path
+    logo = Image.open("ai_assistance.png")
 
     # Adjust the size: Increase width and reduce height
     new_width = 600  # Set your desired width
