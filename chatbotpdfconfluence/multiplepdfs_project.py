@@ -142,8 +142,8 @@ def main():
     
     genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-    image_path = Path("/mount/src/genai_llm/chatbotpdfconfluence/ai_assistance.png")
-    logo = Image.open(image_path)
+    #image_path = Path("/mount/src/genai_llm/chatbotpdfconfluence/ai_assistance.png")
+    #logo = Image.open(image_path)
 
     # Adjust the size: Increase width and reduce height
     new_width = 600  # Set your desired width
