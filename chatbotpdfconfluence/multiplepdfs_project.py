@@ -150,7 +150,7 @@ def main():
     new_height = 200  # Set your desired height
     #logo_resized = logo.resize((new_width, new_height))
 
-    st.image(logo_resized)
+    #st.image(logo_resized)
     
     # Path to your image (either local or from a URL)
 
