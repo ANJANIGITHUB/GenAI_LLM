@@ -3,9 +3,8 @@ import traceback
 import requests
 from requests.auth import HTTPBasicAuth
 from bs4 import BeautifulSoup
-from dotenv import load_dotenv
-import streamlit as st
 import os
+from dotenv import load_dotenv
 
 def extract_confluence_details(confluence_url):
     try:
@@ -27,14 +26,9 @@ def extract_confluence_details(confluence_url):
     except Exception as e:
         return f"Error: {e}", None
 
-
-
-
 # Output results
 #print("Base URL up to 'wiki':", baseurl)
 #print("Page ID:", pageid)
-
-
 
 
 def get_confluence_content(confluence_url):
@@ -49,7 +43,7 @@ def get_confluence_content(confluence_url):
     page_id = pageid#"183189373829"  # Replace with the Confluence page ID
     
     #api_token = "Your API Token" # Your API token
-    api_token=os.getenv("api_token")
+    api_token= os.getenv("api_token")
     email    = os.getenv("email")
 
     # Confluence REST API URL to fetch content
@@ -80,7 +74,7 @@ def get_confluence_content(confluence_url):
     except Exception as e:
         return f"Error: {e}", None
 
-#confluence_link = st.sidebar.text_input("Give your confluence link here:")
+
 if __name__ == "__main__":
     load_dotenv()
     get_confluence_content(confluence_url)
