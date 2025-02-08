@@ -138,6 +138,8 @@ def calculate_bleu_score(reference, candidate):
 def main():
     load_dotenv()
     os.getenv("GOOGLE_API_KEY")
+    os.getenv("api_token")
+    
     genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
     logo = Image.open("ai_assistance.png")  # Replace with your logo path
