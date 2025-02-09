@@ -33,6 +33,8 @@ import base64
 from PIL import Image
 from pydantic.functional_validators import field_validator
 from confluence_reader import get_confluence_content as conf_content
+from pathlib import Path
+
 
 # Ensure necessary NLTK data is downloaded
 nltk.download('punkt')
