@@ -172,7 +172,7 @@ def main():
     pdf_docs = st.sidebar.file_uploader("Upload your PDFs here:", accept_multiple_files=True)
     confluence_link = st.sidebar.text_input("Give your confluence link here:")
 
-    user_question = st.text_input("Ask any question about your Equipments:")
+    user_question = st.text_input("Ask any question about from your Document:")
 
     # Ensure only one input is provided
     if pdf_docs and confluence_link.strip():
