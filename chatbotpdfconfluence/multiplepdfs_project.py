@@ -179,18 +179,18 @@ def main():
     if pdf_docs:
         for file in pdf_docs:
             if not file.name.lower().endswith(".pdf"):
-                st.error(f"Invalid file type: {file.name}. Please upload only PDF files.")
+                st.sidebar.error(f"Invalid file type: {file.name}. Please upload only PDF files.")
             else:
-                st.success(f"Sucessfully Uploaded: {file.name}")
+                st.sidebar.success(f"Sucessfully Uploaded: {file.name}")
         # Check if the input is a Confluence page URL
     elif user_question:
         try:
             if not is_valid_confluence_url(user_question):
                 raise ValueError("Invalid input. Please enter a valid Confluence page URL.")
             else:
-                st.success("Valid Confluence page URL provided.")
+                st.sidebar.success("Valid Confluence page URL provided.")
         except ValueError as e:
-            st.error(str(e))
+            st.sidebar.error(str(e))
 
     user_question = st.text_input("Ask any question about your Equipments:")
 
