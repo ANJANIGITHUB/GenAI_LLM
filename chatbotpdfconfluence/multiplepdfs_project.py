@@ -33,8 +33,6 @@ import base64
 from PIL import Image
 from pydantic.functional_validators import field_validator
 from confluence_reader import get_confluence_content as conf_content
-from pathlib import Path
-
 
 # Ensure necessary NLTK data is downloaded
 nltk.download('punkt')
@@ -134,11 +132,11 @@ def calculate_bleu_score(reference, candidate):
     candidate_tokens = [word for word in candidate_tokens if word not in stop_words]
     return round(sentence_bleu([reference_tokens], candidate_tokens), 2)
 
+
 # Function to validate Confluence URL
 def is_valid_confluence_url(url):
     pattern = r"https://[\w.-]+/wiki/spaces/[\w-]+/pages/\d+"
     return re.match(pattern, url) is not None
-
 
 
 # Main function
@@ -146,11 +144,10 @@ def main():
     load_dotenv()
     os.getenv("GOOGLE_API_KEY")
     os.getenv("api_token")
-    
+
     genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-    image_path = Path("chatbotpdfconfluence/ai_assistance.png")
-    logo = Image.open(image_path)
+    logo = Image.open("ai_assistance.png")  # Replace with your logo path
 
     # Adjust the size: Increase width and reduce height
     new_width = 600  # Set your desired width
@@ -175,26 +172,38 @@ def main():
     pdf_docs = st.sidebar.file_uploader("Upload your PDFs here:", accept_multiple_files=True)
     confluence_link = st.sidebar.text_input("Give your confluence link here:")
 
-    # Validate file types
-    if pdf_docs:
+    user_question = st.text_input("Ask any question about your Equipments:")
+
+    # Ensure only one input is provided
+    if pdf_docs and confluence_link.strip():
+        st.sidebar.error("Please provide either PDFs or a Confluence link, not both.")
+    elif pdf_docs:
         for file in pdf_docs:
             if not file.name.lower().endswith(".pdf"):
                 st.sidebar.error(f"Invalid file type: {file.name}. Please upload only PDF files.")
+                pass
             else:
-                st.sidebar.success(f"Sucessfully Uploaded: {file.name}")
-        # Check if the input is a Confluence page URL
-    elif user_question:
-        try:
-            if not is_valid_confluence_url(user_question):
-                raise ValueError("Invalid input. Please enter a valid Confluence page URL.")
-            else:
-                st.sidebar.success("Valid Confluence page URL provided.")
-        except ValueError as e:
-            st.sidebar.error(str(e))
+                st.sidebar.success(f"Successfully Uploaded: {file.name}")
+                pass
+    elif confluence_link and confluence_link.strip():
+        if is_valid_confluence_url(confluence_link):
+            st.sidebar.success("Valid Confluence page URL provided.")
+        else:
+            st.sidebar.error("Invalid input. Please enter a valid Confluence page URL.")
+    #else:
+        #st.info("Please upload a PDF or provide a Confluence link to proceed.")
 
-    user_question = st.text_input("Ask any question about your Equipments:")
+    
 
-
+    # # Check if the input is a Confluence page URL
+    # if user_question:
+    #     try:
+    #         if not is_valid_confluence_url(user_question):
+    #             raise ValueError("Invalid input. Please enter a valid Confluence page URL.")
+    #         else:
+    #             st.success("Valid Confluence page URL provided.")
+    #     except ValueError as e:
+    #         st.error(str(e))
 
     if st.button("Submit"):
         with st.spinner("Processing"):
@@ -233,7 +242,7 @@ def main():
                     except Exception:
                         st.error("Error occurred during processing confluence.")
             else:
-                st.error("Please upload at least one PDF file.")
+                st.error("Please upload at least one PDF file or Confluence URL.")
 
 if __name__ == '__main__':
     main()
