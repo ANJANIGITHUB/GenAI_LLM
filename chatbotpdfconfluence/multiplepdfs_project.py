@@ -169,6 +169,14 @@ def main():
 
     pdf_docs = st.sidebar.file_uploader("Upload your PDFs here:", accept_multiple_files=True)
 
+    # Validate file types
+    if pdf_docs:
+        for file in pdf_docs:
+            if not file.name.lower().endswith(".pdf"):
+                st.error(f"Invalid file type: {file.name}. Please upload only PDF files.")
+            else:
+                st.success(f"Sucessfully Uploaded: {file.name}")
+
     confluence_link = st.sidebar.text_input("Give your confluence link here:")
 
     user_question = st.text_input("Ask any question about your Equipments:")
