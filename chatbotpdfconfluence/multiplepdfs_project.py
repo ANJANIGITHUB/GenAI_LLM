@@ -173,9 +173,9 @@ def main():
     if pdf_docs:
         for file in pdf_docs:
             if not file.name.lower().endswith(".pdf"):
-                st.error(f"Invalid file type: {file.name}. Please upload only PDF files.")
+                st.sidebar.error(f"Invalid file type: {file.name}. Please upload only PDF files.")
             else:
-                st.success(f"Sucessfully Uploaded: {file.name}")
+                st.sidebar.success(f"Sucessfully Uploaded: {file.name}")
 
     confluence_link = st.sidebar.text_input("Give your confluence link here:")
 
