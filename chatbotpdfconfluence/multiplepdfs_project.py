@@ -134,6 +134,11 @@ def calculate_bleu_score(reference, candidate):
     candidate_tokens = [word for word in candidate_tokens if word not in stop_words]
     return round(sentence_bleu([reference_tokens], candidate_tokens), 2)
 
+# Function to validate Confluence URL
+def is_valid_confluence_url(url):
+    pattern = r"https://[\w.-]+/wiki/spaces/[\w-]+/pages/\d+"
+    return re.match(pattern, url) is not None
+
 
 
 # Main function
@@ -180,6 +185,16 @@ def main():
     confluence_link = st.sidebar.text_input("Give your confluence link here:")
 
     user_question = st.text_input("Ask any question about your Equipments:")
+
+    # Check if the input is a Confluence page URL
+    if user_question:
+        try:
+            if not is_valid_confluence_url(user_question):
+                raise ValueError("Invalid input. Please enter a valid Confluence page URL.")
+            else:
+                st.success("Valid Confluence page URL provided.")
+        except ValueError as e:
+            st.error(str(e))
 
     if st.button("Submit"):
         with st.spinner("Processing"):
