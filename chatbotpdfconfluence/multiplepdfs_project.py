@@ -173,21 +173,17 @@ def main():
         ''')
 
     pdf_docs = st.sidebar.file_uploader("Upload your PDFs here:", accept_multiple_files=True)
+    confluence_link = st.sidebar.text_input("Give your confluence link here:")
 
     # Validate file types
     if pdf_docs:
         for file in pdf_docs:
             if not file.name.lower().endswith(".pdf"):
-                st.sidebar.error(f"Invalid file type: {file.name}. Please upload only PDF files.")
+                st.error(f"Invalid file type: {file.name}. Please upload only PDF files.")
             else:
-                st.sidebar.success(f"Sucessfully Uploaded: {file.name}")
-
-    confluence_link = st.sidebar.text_input("Give your confluence link here:")
-
-    user_question = st.text_input("Ask any question about your Equipments:")
-
-    # Check if the input is a Confluence page URL
-    if user_question:
+                st.success(f"Sucessfully Uploaded: {file.name}")
+        # Check if the input is a Confluence page URL
+    elif user_question:
         try:
             if not is_valid_confluence_url(user_question):
                 raise ValueError("Invalid input. Please enter a valid Confluence page URL.")
@@ -195,6 +191,10 @@ def main():
                 st.success("Valid Confluence page URL provided.")
         except ValueError as e:
             st.error(str(e))
+
+    user_question = st.text_input("Ask any question about your Equipments:")
+
+
 
     if st.button("Submit"):
         with st.spinner("Processing"):
